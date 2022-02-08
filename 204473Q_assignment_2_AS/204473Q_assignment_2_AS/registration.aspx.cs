@@ -56,6 +56,7 @@ namespace _204473Q_assignment_2_AS
                     ModelState.AddModelError(string.Empty, "Did not pass captcha test!! <0.5");
                 }
             }
+            else
             {
                 ModelState.AddModelError(string.Empty, "Captcha Failed, bad request!!");
             }

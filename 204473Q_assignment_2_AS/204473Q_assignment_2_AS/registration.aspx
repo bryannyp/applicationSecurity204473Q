@@ -6,35 +6,35 @@
          <script type="text/javascript">
              function validate() {
                  //Password validation
-                 var strpassword = document.getElementById("password_txt").value;
+                 var strpassword = document.getElementById("mainContent_password_txt").value;
                  if (strpassword.length == 0) {
                      document.getElementById("lbl_passwordchecker").innerHTML = "";
                      document.getElementById("lbl_passwordchecker").style.color = "Red";
                      
                  }
                  else if (strpassword.length < 12) {
-                     document.getElementById("lbl_passwordchecker").innerHTML = "Password Length must be at least 12 characters";
-                     document.getElementById("lbl_passwordchecker").style.color = "Red";
+                     document.getElementById("mainContent_lbl_passwordchecker").innerHTML = "Password Length must be at least 12 characters";
+                     document.getElementById("mainContent_lbl_passwordchecker").style.color = "Red";
                  }
                  else if (strpassword.search(/[0-9+]/) == -1) {
-                     document.getElementById("lbl_passwordchecker").innerHTML = "Must have at least 1 number";
-                     document.getElementById("lbl_passwordchecker").style.color = "red";
+                     document.getElementById("mainContent_lbl_passwordchecker").innerHTML = "Must have at least 1 number";
+                     document.getElementById("mainContent_lbl_passwordchecker").style.color = "red";
                      return ("no_number");
                  }
                  else if (strpassword.search(/[A-Z+]/) == -1) {
-                     document.getElementById("lbl_passwordchecker").innerHTML = "Must have at least 1 capital";
-                     document.getElementById("lbl_passwordchecker").style.color = "red";
+                     document.getElementById("mainContent_lbl_passwordchecker").innerHTML = "Must have at least 1 capital";
+                     document.getElementById("mainContent_lbl_passwordchecker").style.color = "red";
                      return ("no_cap");
                  }
                  else if (strpassword.search(/[\W+]/) == -1) {
-                     document.getElementById("lbl_passwordchecker").innerHTML = "Must have at least 1 special character";
-                     document.getElementById("lbl_passwordchecker").style.color = "red";
+                     document.getElementById("mainContent_lbl_passwordchecker").innerHTML = "Must have at least 1 special character";
+                     document.getElementById("mainContent_lbl_passwordchecker").style.color = "red";
                      return ("no_symbol");
                  }
 
                  else {
-                     document.getElementById("lbl_passwordchecker").innerHTML = "Eggcellent";
-                     document.getElementById("lbl_passwordchecker").style.color = "Blue";
+                     document.getElementById("mainContent_lbl_passwordchecker").innerHTML = "Eggcellent";
+                     document.getElementById("mainContent_lbl_passwordchecker").style.color = "Blue";
 
                  }
              }

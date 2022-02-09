@@ -20,6 +20,72 @@ namespace _204473Q_assignment_2_AS
         public byte[] IV;
         public string salt;
         string constr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+        //Update password function
+
+        public bool updatePass(string input,string newpass)
+        {
+
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("update accountsDB set password=@password where email_address=@userEmail"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        string hashedpass= hasher(newpass);
+                        updateSalt(input);
+                        cmd.Parameters.AddWithValue("@password", hashedpass);
+                        cmd.Parameters.AddWithValue("@userEmail", input);
+                        cmd.Connection = con;
+                        con.Open();
+                        try
+                        {
+                            cmd.ExecuteScalar();
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            return false;
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+            }
+        }
+        public bool updateSalt(string input)
+        {
+
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("update accountsDB set salt=@salt where email_address=@userEmail"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        
+                        cmd.Parameters.AddWithValue("@salt", salt);
+                        cmd.Parameters.AddWithValue("@userEmail", input);
+                        cmd.Connection = con;
+                        con.Open();
+                        try
+                        {
+                            cmd.ExecuteScalar();
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            return false;
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+            }
+        }
+
         //lockout functions
         public void lockoutCounter(string email,int counter)
         {
@@ -312,6 +378,43 @@ namespace _204473Q_assignment_2_AS
                         catch (Exception)
                         {
                             return false;
+                        }
+                        finally
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+            }
+        }
+        public string passCheck(string input)
+        {
+
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("select password from accountsDB where email_address=@userEmail"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Parameters.AddWithValue("@userEmail", input);
+                        cmd.Connection = con;
+                        con.Open();
+                        try
+                        {
+                            if (cmd.ExecuteScalar() != null)
+                            {
+                                string pass = cmd.ExecuteScalar().ToString();
+                                return pass;
+                            }
+                            else
+                            {
+                                return null;
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+                            return null;
                         }
                         finally
                         {

@@ -21,11 +21,11 @@ namespace _204473Q_assignment_2_AS
                     if (Session["AuthToken"].ToString().Equals(Request.Cookies["AuthToken"].Value))
                     {
                         dataModel data = functions.getAllInfo(Session["LoggedIn"].ToString());
-                        Label1.Text += data.first_name;
-                        Label2.Text += data.last_name;
-                        Label3.Text += functions.decrypter(data.credit_card_info, Convert.FromBase64String(data.IV),Convert.FromBase64String(data.cryptokey));
-                        Label4.Text += data.email;
-                        Label5.Text += data.date_of_birth;
+                        lbl_firstName.Text = data.first_name;
+                        lblLastName.Text = data.last_name;
+                        lblCreditCard.Text = functions.decrypter(data.credit_card_info, Convert.FromBase64String(data.IV),Convert.FromBase64String(data.cryptokey));
+                        lblEmail.Text = data.email;
+                        lblDateofBirth.Text = data.date_of_birth;
                     }
                 }
                 else
@@ -38,6 +38,35 @@ namespace _204473Q_assignment_2_AS
             {
                 Response.Redirect("Login.aspx", false);
             }
+        }
+
+        protected void passChangeBtn_Click(object sender, EventArgs e)
+        {
+            if (functions.hasher(oldPassTxt.Text, functions.saltCheck(Session["LoggedIn"].ToString())) == functions.getAllInfo(Session["LoggedIn"].ToString()).password)
+            {
+                if (newPassTxt.Text == matchPasstxt.Text)
+                {
+                    if(functions.updatePass(Session["LoggedIn"].ToString(), newPassTxt.Text))
+                    {
+                        ModelState.AddModelError(string.Empty, "password changed!");
+                        ErrorSummary.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Something wrong D:");
+                    }
+                   
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "password does not match!");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty,"Wrong password!");
+            }
+         
         }
     }
 }

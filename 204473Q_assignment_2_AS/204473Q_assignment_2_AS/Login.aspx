@@ -32,7 +32,7 @@
         </p>
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('6Lc4-V4eAAAAAO4ffnWiGVIqyMiIJZUMdzxmpjSe', { action: 'Login' }).then(function (token) {
+            grecaptcha.execute('SITE KEY', { action: 'Login' }).then(function (token) {
                 document.getElementById("g-recaptcha-response").value = token;
             });
         });

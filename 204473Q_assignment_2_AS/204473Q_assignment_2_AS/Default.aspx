@@ -7,7 +7,7 @@
            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"/>
            <script>
                 grecaptcha.ready(function () {
-                    grecaptcha.execute('6Lc4-V4eAAAAAO4ffnWiGVIqyMiIJZUMdzxmpjSe', { action: 'homepage' }).then(function (token) {
+                    grecaptcha.execute('SITE KEY', { action: 'homepage' }).then(function (token) {
                         document.getElementById("g-recaptcha-response").value = token;
                     });
                 });

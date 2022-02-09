@@ -211,7 +211,7 @@ namespace _204473Q_assignment_2_AS
         public captchaObject validateCaptcha(string response)
         {
             captchaObject captchaReturn = null;
-            var secret = "6Lc4-V4eAAAAAOZhEcoPTPl0anTlOu6hs22kvsSr";
+            var secret = "SECRET KEY";
             var req =
                (HttpWebRequest)
                    WebRequest.Create("https://www.google.com/recaptcha/api/siteverify?secret=" + secret + "&response=" + HttpContext.Current.Request.Form["g-recaptcha-response"]);

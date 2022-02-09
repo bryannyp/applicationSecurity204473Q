@@ -140,7 +140,7 @@
         </div>
             <script>
                 grecaptcha.ready(function () {
-                    grecaptcha.execute('6Lc4-V4eAAAAAO4ffnWiGVIqyMiIJZUMdzxmpjSe', { action: 'register' }).then(function (token) {
+                    grecaptcha.execute('SITEKEY', { action: 'register' }).then(function (token) {
                         document.getElementById("g-recaptcha-response").value = token;
                     });
                 });
